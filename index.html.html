@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelvin Web - Games</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: white;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            background: #101522;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #252b3b;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            padding: 60px 8%;
+            background:
+                radial-gradient(circle at 80% 30%, #143b65, transparent 35%),
+                linear-gradient(135deg, #080b14, #111b30);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            color: #b8c0d0;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #00e5ff;
+            color: #001016;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px #00e5ff;
+        }
+
+        /* GAMES */
+        .games-section {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+        }
+
+        .section-title p {
+            color: #8e98aa;
+            margin-top: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .game-card {
+            background: #111724;
+            border: 1px solid #242d3e;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #00e5ff;
+            box-shadow: 0 10px 30px rgba(0,229,255,0.15);
+        }
+
+        .game-image {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            background: linear-gradient(135deg, #182640, #0b101d);
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .game-info p {
+            color: #8993a6;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .play {
+            display: inline-block;
+            background: #00e5ff;
+            color: #001016;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            padding: 40px 7% 70px;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .category {
+            background: #151c2b;
+            border: 1px solid #293449;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            background: #00e5ff;
+            color: black;
+        }
+
+        /* POKI */
+        .poki {
+            padding: 70px 7%;
+            text-align: center;
+            background: #0d1220;
+        }
+
+        .poki h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .poki p {
+            color: #a5aec0;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #060810;
+            text-align: center;
+            padding: 30px;
+            color: #727c8e;
+        }
+
+        footer strong {
+            color: #00e5ff;
+        }
+
+        /* MOBILE */
+        @media(max-width: 700px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 50px 25px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">KELVIN<span>WEB</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#poki">Poki</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <h1>
+                Welcome to <span>Kelvin Web</span>
+            </h1>
+
+            <p>
+                Your gaming zone for discovering exciting browser games,
+                action games, racing games, football games and more.
+            </p>
+
+            <a href="#games" class="button">
+                🎮 Explore Games
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- GAMES -->
+    <section class="games-section" id="games">
+
+        <div class="section-title">
+            <h2>🎮 Featured Games</h2>
+            <p>Choose a game and start playing.</p>
+        </div>
+
+        <div class="games-grid">
+
+            <div class="game-card">
+                <div class="game-image">⚽</div>
+
+                <div class="game-info">
+                    <h3>Football Games</h3>
+                    <p>Discover football and sports games.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/sports"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-image">🏎️</div>
+
+                <div class="game-info">
+                    <h3>Racing Games</h3>
+                    <p>Fast cars, racing and driving games.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/racing"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-image">🔫</div>
+
+                <div class="game-info">
+                    <h3>Action Games</h3>
+                    <p>Explore exciting action games.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/action"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-image">🧩</div>
+
+                <div class="game-info">
+                    <h3>Puzzle Games</h3>
+                    <p>Challenge your brain with puzzles.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/puzzle"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-image">🏃</div>
+
+                <div class="game-info">
+                    <h3>Adventure Games</h3>
+                    <p>Run, explore and complete challenges.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/adventure"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-image">👾</div>
+
+                <div class="game-info">
+                    <h3>Arcade Games</h3>
+                    <p>Classic-style arcade entertainment.</p>
+
+                    <a class="play"
+                       href="https://poki.com/en/arcade"
+                       target="_blank">
+                        PLAY
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CATEGORIES -->
+    <section class="categories" id="categories">
+
+        <div class="section-title">
+            <h2>Game Categories</h2>
+            <p>Find your favorite type of game.</p>
+        </div>
+
+        <div class="category-buttons">
+
+            <button class="category">⚽ Sports</button>
+            <button class="category">🏎️ Racing</button>
+            <button class="category">🔫 Action</button>
+            <button class="category">🧩 Puzzle</button>
+            <button class="category">🏃 Adventure</button>
+            <button class="category">👾 Arcade</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- POKI -->
+    <section class="poki" id="poki">
+
+        <h2>🎮 Play on Poki</h2>
+
+        <p>
+            Kelvin Web connects you to a huge collection of browser games
+            available on Poki. Click below to explore the official Poki
+            gaming platform.
+        </p>
+
+        <br>
+
+        <a
+            class="button"
+            href="https://poki.com/"
+            target="_blank">
+            🚀 OPEN POKI
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 <strong>Kelvin Web</strong> — Gaming Zone
+    </footer>
+
+
+</body>
+</html>
