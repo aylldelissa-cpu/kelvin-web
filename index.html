@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelvin Web</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0b1020;
+            color: white;
+        }
+
+        /* NAVIGATION */
+        nav {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            background: #11182d;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #27304d;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00d9ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                radial-gradient(circle at center, #172b57 0%, #0b1020 55%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #00d9ff;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.7;
+            color: #b9c3d8;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #00d9ff;
+            color: #07101d;
+        }
+
+        .secondary {
+            border: 1px solid #00d9ff;
+            color: #00d9ff;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px #0008;
+        }
+
+        /* GENERAL SECTION */
+        section {
+            padding: 90px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #9da8bf;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #121a31;
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid #27304d;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00d9ff;
+        }
+
+        .card .icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #aab4ca;
+            line-height: 1.6;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #0e1528;
+        }
+
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-box p {
+            color: #b6c0d4;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #303a58;
+            border-radius: 10px;
+            background: #11182d;
+            color: white;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #00d9ff;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080d19;
+            color: #78839b;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">KELVIN<span>.</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to <span>Kelvin</span> Web
+            </h1>
+
+            <p>
+                A modern website built with HTML, CSS and JavaScript.
+                Fast, responsive and designed for the modern web.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#services" class="btn primary">
+                    Explore
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services">
+
+        <div class="title">
+
+            <h2>My Services</h2>
+
+            <p>
+                Things I can build for you
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon">💻</div>
+
+                <h3>Web Design</h3>
+
+                <p>
+                    Modern and responsive websites that work
+                    on computers, tablets and phones.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎮</div>
+
+                <h3>Game Projects</h3>
+
+                <p>
+                    Interactive browser games using JavaScript,
+                    HTML and CSS.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🚀</div>
+
+                <h3>Web Apps</h3>
+
+                <p>
+                    Interactive applications with buttons,
+                    forms and dynamic content.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎨</div>
+
+                <h3>Creative Design</h3>
+
+                <p>
+                    Attractive layouts, animations and
+                    modern user interfaces.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <div class="title">
+
+            <h2>About This Website</h2>
+
+        </div>
+
+        <div class="about-box">
+
+            <p>
+                This website is completely created with
+                HTML, CSS and JavaScript. You can customize
+                the colors, text, images, buttons and sections
+                to create your own professional website.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="title">
+
+            <h2>Contact</h2>
+
+            <p>
+                Send a message
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your email"
+            >
+
+            <textarea
+                id="message"
+                placeholder="Your message"
+            ></textarea>
+
+            <button
+                class="btn primary submit"
+                onclick="sendMessage()"
+            >
+                Send Message
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Kelvin Web — All Rights Reserved.
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function sendMessage() {
+
+            let name =
+                document.getElementById("name").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let message =
+                document.getElementById("message").value;
+
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                alert("Please fill in all fields.");
+
+                return;
+            }
+
+
+            alert(
+                "Thanks " +
+                name +
+                "! Your message has been received."
+            );
+
+
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
