@@ -1,504 +1,2031 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kelvin Web</title>
+<title>KELVINHO — Search Everything</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<meta name="description"
+content="KELVINHO is an online portal for search, games, football, AI, movies, music, books, streaming and social media.">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        body {
-            background: #0b1020;
-            color: white;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* NAVIGATION */
-        nav {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            background: #11182d;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #27304d;
-        }
+body{
+    min-height:100vh;
+    color:white;
+    background:#05070b;
+}
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-        }
+/* ================= BACKGROUND ================= */
 
-        .logo span {
-            color: #00d9ff;
-        }
+.hero{
+    min-height:100vh;
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+    background:
+    linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.85)
+    ),
+    url("https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=2200&q=85");
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
 
-        nav a:hover {
-            color: #00d9ff;
-        }
+/* ================= NAVBAR ================= */
 
-        /* HERO */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background:
-                radial-gradient(circle at center, #172b57 0%, #0b1020 55%);
-        }
+nav{
+    height:72px;
+    padding:0 5%;
 
-        .hero-content {
-            max-width: 850px;
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-        .hero h1 {
-            font-size: clamp(45px, 8vw, 90px);
-            margin-bottom: 20px;
-        }
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(15px);
 
-        .hero h1 span {
-            color: #00d9ff;
-        }
+    border-bottom:1px solid rgba(255,255,255,.1);
 
-        .hero p {
-            font-size: 20px;
-            line-height: 1.7;
-            color: #b9c3d8;
-            margin-bottom: 35px;
-        }
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+.logo{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+}
 
-        .btn {
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+.logo span{
+    color:#00ff88;
+}
 
-        .primary {
-            background: #00d9ff;
-            color: #07101d;
-        }
+nav ul{
+    display:flex;
+    gap:22px;
+    list-style:none;
+}
 
-        .secondary {
-            border: 1px solid #00d9ff;
-            color: #00d9ff;
-        }
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
 
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px #0008;
-        }
+nav a:hover{
+    color:#00ff88;
+}
 
-        /* GENERAL SECTION */
-        section {
-            padding: 90px 8%;
-        }
+/* ================= HERO ================= */
 
-        .title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+.hero-content{
+    min-height:calc(100vh - 72px);
 
-        .title h2 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
-        .title p {
-            color: #9da8bf;
-        }
+    text-align:center;
+    padding:60px 20px;
+}
 
-        /* CARDS */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 25px;
-        }
+.title{
+    font-size:clamp(55px,9vw,110px);
+    font-weight:1000;
+    text-shadow:0 8px 35px #000;
+}
 
-        .card {
-            background: #121a31;
-            padding: 30px;
-            border-radius: 18px;
-            border: 1px solid #27304d;
-            transition: 0.3s;
-        }
+.title span{
+    color:#00ff88;
+}
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #00d9ff;
-        }
+.subtitle{
+    color:#ddd;
+    font-size:19px;
+    margin:12px 0 30px;
+}
 
-        .card .icon {
-            font-size: 45px;
-            margin-bottom: 20px;
-        }
+/* ================= SEARCH ================= */
 
-        .card h3 {
-            font-size: 23px;
-            margin-bottom: 12px;
-        }
+.search-area{
+    width:min(780px,92%);
+    position:relative;
+}
 
-        .card p {
-            color: #aab4ca;
-            line-height: 1.6;
-        }
+#search{
+    width:100%;
+    height:65px;
 
-        /* ABOUT */
-        .about {
-            background: #0e1528;
-        }
+    border:0;
+    outline:0;
 
-        .about-box {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
+    border-radius:38px;
 
-        .about-box p {
-            color: #b6c0d4;
-            font-size: 18px;
-            line-height: 1.9;
-        }
+    padding:0 70px 0 27px;
 
-        /* CONTACT */
-        .contact-box {
-            max-width: 600px;
-            margin: auto;
-        }
+    font-size:18px;
+    color:#111;
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #303a58;
-            border-radius: 10px;
-            background: #11182d;
-            color: white;
-            outline: none;
-        }
+    box-shadow:0 15px 50px rgba(0,0,0,.7);
+}
 
-        input:focus,
-        textarea:focus {
-            border-color: #00d9ff;
-        }
+.search-btn{
+    position:absolute;
 
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
+    right:7px;
+    top:7px;
 
-        .submit {
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    width:51px;
+    height:51px;
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #080d19;
-            color: #78839b;
-        }
+    border:0;
+    border-radius:50%;
 
-        /* MOBILE */
-        @media (max-width: 700px) {
-            nav {
-                padding: 0 5%;
-            }
+    background:#00c96b;
+    color:white;
 
-            nav ul {
-                gap: 12px;
-            }
+    font-size:22px;
+    cursor:pointer;
+}
 
-            nav a {
-                font-size: 13px;
-            }
+.search-btn:hover{
+    background:#00ff88;
+    color:#001b0d;
+}
 
-            section {
-                padding: 70px 5%;
-            }
-        }
-    </style>
+/* ================= SEARCH ENGINES ================= */
+
+.engines{
+    margin-top:17px;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    gap:8px;
+}
+
+.engines button{
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(0,0,0,.5);
+
+    color:white;
+
+    padding:9px 15px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+}
+
+.engines button:hover{
+    background:#00a85a;
+}
+
+/* ================= RESULTS ================= */
+
+#results{
+    width:min(780px,92%);
+    margin-top:25px;
+}
+
+.result{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding:17px;
+
+    margin-bottom:12px;
+
+    background:rgba(5,8,12,.94);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:15px;
+
+    color:white;
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.result:hover{
+    transform:translateY(-3px);
+    border-color:#00ff88;
+    background:rgba(0,255,136,.08);
+}
+
+.result-icon{
+    min-width:52px;
+    height:52px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#151c25;
+
+    border-radius:13px;
+
+    font-size:26px;
+}
+
+.result h3{
+    margin-bottom:5px;
+}
+
+.result p{
+    color:#aaa;
+    font-size:14px;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:80px 6%;
+    background:#070a10;
+}
+
+section:nth-of-type(even){
+    background:#05070b;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.section-title span{
+    color:#00ff88;
+}
+
+.section-description{
+    text-align:center;
+    color:#999;
+    margin-bottom:40px;
+}
+
+/* ================= CARDS ================= */
+
+.grid{
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+.card{
+    background:
+    linear-gradient(145deg,#111722,#080b11);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    min-height:210px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+
+    border-color:#00ff88;
+
+    box-shadow:
+    0 15px 45px rgba(0,255,136,.1);
+}
+
+.card-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.5;
+}
+
+.card a{
+    margin-top:20px;
+
+    display:block;
+
+    text-align:center;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#00a85a;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+.card a:hover{
+    background:#00ff88;
+    color:#001b0d;
+}
+
+/* ================= CATEGORY BAR ================= */
+
+.category-bar{
+    max-width:1200px;
+    margin:0 auto 35px;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.category-bar button{
+    padding:11px 18px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:#10151e;
+
+    color:white;
+
+    border-radius:25px;
+
+    cursor:pointer;
+}
+
+.category-bar button:hover{
+    background:#00a85a;
+}
+
+/* ================= FOOTBALL ================= */
+
+.live-box{
+    max-width:1000px;
+    margin:auto;
+
+    padding:35px;
+
+    text-align:center;
+
+    border:1px solid #00ff88;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(0,255,136,.08),
+        rgba(0,0,0,.3)
+    );
+}
+
+.live-box h3{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.live-box p{
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:40px 20px;
+
+    text-align:center;
+
+    background:#020305;
+
+    color:#777;
+}
+
+footer strong{
+    color:#00ff88;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero-content{
+        padding-top:50px;
+    }
+
+    .section-title{
+        font-size:32px;
+    }
+
+    section{
+        padding:60px 5%;
+    }
+
+}
+</style>
 </head>
+
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">KELVIN<span>.</span></div>
 
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<!-- =====================================================
+                     KELVINHO HOME
+===================================================== -->
+
+<div class="hero">
+
+<nav>
+
+    <div class="logo">
+        KELVIN<span>HO</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#ai">AI</a></li>
+        <li><a href="#football">Football</a></li>
+        <li><a href="#social">Social</a></li>
+    </ul>
+
+</nav>
 
 
-    <!-- HERO -->
-    <section class="hero" id="home">
+<div class="hero-content" id="home">
 
-        <div class="hero-content">
+    <h1 class="title">
+        KELVIN<span>HO</span>
+    </h1>
 
-            <h1>
-                Welcome to <span>Kelvin</span> Web
-            </h1>
+    <p class="subtitle">
+        Search the web • Games • AI • Football • Movies • Music • Books
+    </p>
 
-            <p>
-                A modern website built with HTML, CSS and JavaScript.
-                Fast, responsive and designed for the modern web.
-            </p>
 
-            <div class="buttons">
+    <div class="search-area">
 
-                <a href="#services" class="btn primary">
-                    Explore
-                </a>
+        <input
+            id="search"
+            type="text"
+            placeholder="Search KELVINHO..."
+            autocomplete="off"
+        >
 
-                <a href="#contact" class="btn secondary">
-                    Contact Me
-                </a>
+        <button
+            class="search-btn"
+            onclick="searchKelvinho()">
+            🔍
+        </button>
 
+    </div>
+
+
+    <div class="engines">
+
+        <button onclick="searchEngine('google')">
+            Google
+        </button>
+
+        <button onclick="searchEngine('bing')">
+            Bing
+        </button>
+
+        <button onclick="searchEngine('duck')">
+            DuckDuckGo
+        </button>
+
+        <button onclick="searchEngine('yahoo')">
+            Yahoo
+        </button>
+
+        <button onclick="searchEngine('brave')">
+            Brave
+        </button>
+
+    </div>
+
+
+    <div id="results"></div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+                         GAMES
+===================================================== -->
+
+<section id="games">
+
+<h2 class="section-title">
+    🎮 <span>GAMES</span>
+</h2>
+
+<p class="section-description">
+    Browser games and gaming platforms.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎮</div>
+<h3>Poki</h3>
+<p>Play browser games online.</p>
+</div>
+
+<a href="https://poki.com/" target="_blank">
+PLAY POKI →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🔥</div>
+<h3>CrazyGames</h3>
+<p>Large collection of browser games.</p>
+</div>
+
+<a href="https://www.crazygames.com/" target="_blank">
+PLAY →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🕹️</div>
+<h3>itch.io</h3>
+<p>Discover independent games.</p>
+</div>
+
+<a href="https://itch.io/" target="_blank">
+EXPLORE →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎯</div>
+<h3>Game Jolt</h3>
+<p>Gaming communities and games.</p>
+</div>
+
+<a href="https://gamejolt.com/" target="_blank">
+EXPLORE →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🏆</div>
+<h3>Armor Games</h3>
+<p>Online games and entertainment.</p>
+</div>
+
+<a href="https://armorgames.com/" target="_blank">
+PLAY →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                           AI
+===================================================== -->
+
+<section id="ai">
+
+<h2 class="section-title">
+    🤖 <span>AI ZONE</span>
+</h2>
+
+<p class="section-description">
+    Popular AI assistants and AI search tools.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🤖</div>
+<h3>ChatGPT</h3>
+<p>AI assistant for questions, learning and creation.</p>
+</div>
+
+<a href="https://chatgpt.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">✨</div>
+<h3>Gemini</h3>
+<p>Google's AI assistant.</p>
+</div>
+
+<a href="https://gemini.google.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🧠</div>
+<h3>Claude</h3>
+<p>AI assistant from Anthropic.</p>
+</div>
+
+<a href="https://claude.ai/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🪟</div>
+<h3>Microsoft Copilot</h3>
+<p>Microsoft's AI assistant.</p>
+</div>
+
+<a href="https://copilot.microsoft.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🔮</div>
+<h3>Perplexity</h3>
+<p>AI-powered search and answers.</p>
+</div>
+
+<a href="https://www.perplexity.ai/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                       FOOTBALL
+===================================================== -->
+
+<section id="football">
+
+<h2 class="section-title">
+    ⚽ <span>FOOTBALL HUB</span>
+</h2>
+
+<p class="section-description">
+    Football scores, competitions and official information.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📊</div>
+<h3>FotMob</h3>
+<p>Live scores, fixtures and football statistics.</p>
+</div>
+
+<a href="https://www.fotmob.com/" target="_blank">
+OPEN FOTMOB →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🏆</div>
+<h3>FIFA</h3>
+<p>Official international football information.</p>
+</div>
+
+<a href="https://www.fifa.com/" target="_blank">
+OPEN FIFA →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📺</div>
+<h3>YouTube Live</h3>
+<p>Find official football livestreams and events.</p>
+</div>
+
+<a href="https://www.youtube.com/live" target="_blank">
+WATCH →
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="live-box">
+
+<h3>⚽ LIVE FOOTBALL</h3>
+
+<p>
+For live matches, use official broadcasters and licensed
+streaming services available in your country.
+</p>
+
+<a
+class="card a"
+href="https://www.fotmob.com/"
+target="_blank"
+style="display:inline-block;width:220px;">
+CHECK MATCHES
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                    LIVE TV & STREAMING
+===================================================== -->
+
+<section id="streaming">
+
+<h2 class="section-title">
+    📺 <span>LIVE TV & STREAMING</span>
+</h2>
+
+<p class="section-description">
+    Official streaming and video platforms.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">▶️</div>
+<h3>YouTube</h3>
+<p>Videos, live broadcasts and entertainment.</p>
+</div>
+
+<a href="https://www.youtube.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎥</div>
+<h3>Twitch</h3>
+<p>Gaming and livestreaming.</p>
+</div>
+
+<a href="https://www.twitch.tv/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📺</div>
+<h3>Pluto TV</h3>
+<p>Free streaming where available.</p>
+</div>
+
+<a href="https://pluto.tv/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📺</div>
+<h3>Tubi</h3>
+<p>Free movies and TV where available.</p>
+</div>
+
+<a href="https://tubitv.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                       MOVIES
+===================================================== -->
+
+<section id="movies">
+
+<h2 class="section-title">
+    🎬 <span>MOVIES & SERIES</span>
+</h2>
+
+<p class="section-description">
+    Official movie and entertainment services.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎬</div>
+<h3>Netflix</h3>
+<p>Movies, series and documentaries.</p>
+</div>
+
+<a href="https://www.netflix.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🏰</div>
+<h3>Disney+</h3>
+<p>Disney movies and series.</p>
+</div>
+
+<a href="https://www.disneyplus.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📦</div>
+<h3>Prime Video</h3>
+<p>Movies and TV series.</p>
+</div>
+
+<a href="https://www.primevideo.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🐉</div>
+<h3>Crunchyroll</h3>
+<p>Anime and Asian entertainment.</p>
+</div>
+
+<a href="https://www.crunchyroll.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">▶️</div>
+<h3>YouTube Movies</h3>
+<p>Official movies and entertainment.</p>
+</div>
+
+<a href="https://www.youtube.com/movies" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                      CARTOONS
+===================================================== -->
+
+<section id="cartoons">
+
+<h2 class="section-title">
+    🧒 <span>CARTOONS & ANIME</span>
+</h2>
+
+<p class="section-description">
+    Official animation and children's entertainment platforms.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📺</div>
+<h3>Cartoon Network</h3>
+<p>Official Cartoon Network website.</p>
+</div>
+
+<a href="https://www.cartoonnetwork.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🐉</div>
+<h3>Crunchyroll</h3>
+<p>Anime streaming platform.</p>
+</div>
+
+<a href="https://www.crunchyroll.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">▶️</div>
+<h3>YouTube Kids</h3>
+<p>Children's video platform.</p>
+</div>
+
+<a href="https://www.youtubekids.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         BOOKS
+===================================================== -->
+
+<section id="books">
+
+<h2 class="section-title">
+    📚 <span>BOOKS & LEARNING</span>
+</h2>
+
+<p class="section-description">
+    Educational resources and legal digital books.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📘</div>
+<h3>TIE</h3>
+<p>Tanzania Institute of Education resources.</p>
+</div>
+
+<a href="https://www.tie.go.tz/" target="_blank">
+OPEN TIE →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📖</div>
+<h3>Google Books</h3>
+<p>Search books and publications.</p>
+</div>
+
+<a href="https://books.google.com/" target="_blank">
+SEARCH BOOKS →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">📚</div>
+<h3>Project Gutenberg</h3>
+<p>Free public-domain ebooks.</p>
+</div>
+
+<a href="https://www.gutenberg.org/" target="_blank">
+READ →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎓</div>
+<h3>OpenStax</h3>
+<p>Free educational textbooks.</p>
+</div>
+
+<a href="https://openstax.org/" target="_blank">
+LEARN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         MUSIC
+===================================================== -->
+
+<section id="music">
+
+<h2 class="section-title">
+    🎵 <span>MUSIC</span>
+</h2>
+
+<p class="section-description">
+    Music streaming and discovery platforms.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎧</div>
+<h3>Spotify</h3>
+<p>Music, podcasts and playlists.</p>
+</div>
+
+<a href="https://open.spotify.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">▶️</div>
+<h3>YouTube Music</h3>
+<p>Music and music videos.</p>
+</div>
+
+<a href="https://music.youtube.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🍎</div>
+<h3>Apple Music</h3>
+<p>Music streaming service.</p>
+</div>
+
+<a href="https://music.apple.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">☁️</div>
+<h3>SoundCloud</h3>
+<p>Discover music and independent artists.</p>
+</div>
+
+<a href="https://soundcloud.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+<div class="card">
+
+<div>
+<div class="card-icon">🎵</div>
+<h3>Deezer</h3>
+<p>Music streaming and playlists.</p>
+</div>
+
+<a href="https://www.deezer.com/" target="_blank">
+OPEN →
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                       SOCIAL MEDIA
+===================================================== -->
+
+<section id="social">
+
+<h2 class="section-title">
+    🌐 <span>SOCIAL MEDIA</span>
+</h2>
+
+<p class="section-description">
+    Social networks and online communities.
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+<div>
+<div class="card-icon">▶️</div>
+<h3>YouTube</h3>
+<p>Videos and creators.</p>
+</div>
+<a href="https://www.youtube.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">🎵</div>
+<h3>TikTok</h3>
+<p>Short videos and trends.</p>
+</div>
+<a href="https://www.tiktok.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">📸</div>
+<h3>Instagram</h3>
+<p>Photos, reels and stories.</p>
+</div>
+<a href="https://www.instagram.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">💬</div>
+<h3>WhatsApp</h3>
+<p>Messaging and communication.</p>
+</div>
+<a href="https://www.whatsapp.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">✈️</div>
+<h3>Telegram</h3>
+<p>Messages, channels and groups.</p>
+</div>
+<a href="https://telegram.org/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">👻</div>
+<h3>Snapchat</h3>
+<p>Snaps and stories.</p>
+</div>
+<a href="https://www.snapchat.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">🎮</div>
+<h3>Discord</h3>
+<p>Gaming communities and chat.</p>
+</div>
+<a href="https://discord.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">🤖</div>
+<h3>Reddit</h3>
+<p>Communities and discussions.</p>
+</div>
+<a href="https://www.reddit.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">𝕏</div>
+<h3>X</h3>
+<p>News and conversations.</p>
+</div>
+<a href="https://x.com/" target="_blank">OPEN →</a>
+</div>
+
+
+<div class="card">
+<div>
+<div class="card-icon">📌</div>
+<h3>Pinterest</h3>
+<p>Ideas, images and inspiration.</p>
+</div>
+<a href="https://www.pinterest.com/" target="_blank">OPEN →</a>
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+                         FOOTER
+===================================================== -->
+
+<footer>
+
+<p>
+© 2026 <strong>KELVINHO</strong>
+</p>
+
+<p>
+Search • Games • AI • Football • Movies • Music • Books • Social
+</p>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+                    KELVINHO DATABASE
+===================================================== */
+
+const sites = [
+
+/* GAMES */
+
+{
+name:"Poki",
+keywords:"poki game games online browser",
+description:"Play online browser games.",
+icon:"🎮",
+url:"https://poki.com/"
+},
+
+{
+name:"CrazyGames",
+keywords:"crazygames games online browser",
+description:"Play browser games.",
+icon:"🔥",
+url:"https://www.crazygames.com/"
+},
+
+{
+name:"itch.io",
+keywords:"itch indie games",
+description:"Discover independent games.",
+icon:"🕹️",
+url:"https://itch.io/"
+},
+
+{
+name:"Game Jolt",
+keywords:"gamejolt games gaming",
+description:"Games and gaming communities.",
+icon:"🎯",
+url:"https://gamejolt.com/"
+},
+
+{
+name:"Armor Games",
+keywords:"armor games browser",
+description:"Online games.",
+icon:"🏆",
+url:"https://armorgames.com/"
+},
+
+
+/* SEARCH */
+
+{
+name:"Google",
+keywords:"google search engine",
+description:"Search the web with Google.",
+icon:"🔎",
+url:"https://www.google.com/"
+},
+
+{
+name:"Microsoft Bing",
+keywords:"bing microsoft search engine",
+description:"Search the web with Bing.",
+icon:"🟦",
+url:"https://www.bing.com/"
+},
+
+{
+name:"DuckDuckGo",
+keywords:"duckduckgo search private",
+description:"Private web search.",
+icon:"🦆",
+url:"https://duckduckgo.com/"
+},
+
+{
+name:"Yahoo",
+keywords:"yahoo search",
+description:"Search the web with Yahoo.",
+icon:"🟣",
+url:"https://search.yahoo.com/"
+},
+
+{
+name:"Brave Search",
+keywords:"brave search engine",
+description:"Search the web with Brave.",
+icon:"🦁",
+url:"https://search.brave.com/"
+},
+
+
+/* AI */
+
+{
+name:"ChatGPT",
+keywords:"chatgpt ai artificial intelligence",
+description:"AI assistant.",
+icon:"🤖",
+url:"https://chatgpt.com/"
+},
+
+{
+name:"Gemini",
+keywords:"gemini google ai",
+description:"Google AI assistant.",
+icon:"✨",
+url:"https://gemini.google.com/"
+},
+
+{
+name:"Claude",
+keywords:"claude anthropic ai",
+description:"AI assistant.",
+icon:"🧠",
+url:"https://claude.ai/"
+},
+
+{
+name:"Microsoft Copilot",
+keywords:"copilot microsoft ai",
+description:"Microsoft AI assistant.",
+icon:"🪟",
+url:"https://copilot.microsoft.com/"
+},
+
+{
+name:"Perplexity",
+keywords:"perplexity ai search",
+description:"AI-powered search.",
+icon:"🔮",
+url:"https://www.perplexity.ai/"
+},
+
+
+/* FOOTBALL */
+
+{
+name:"FotMob",
+keywords:"fotmob football soccer scores",
+description:"Football scores and statistics.",
+icon:"⚽",
+url:"https://www.fotmob.com/"
+},
+
+{
+name:"FIFA",
+keywords:"fifa football soccer",
+description:"Official football information.",
+icon:"🏆",
+url:"https://www.fifa.com/"
+},
+
+
+/* STREAMING */
+
+{
+name:"YouTube Live",
+keywords:"youtube live stream livestream",
+description:"Watch official livestreams.",
+icon:"📺",
+url:"https://www.youtube.com/live"
+},
+
+{
+name:"Twitch",
+keywords:"twitch live stream gaming",
+description:"Gaming livestreams.",
+icon:"🎥",
+url:"https://www.twitch.tv/"
+},
+
+{
+name:"Pluto TV",
+keywords:"pluto tv live television",
+description:"Streaming television where available.",
+icon:"📺",
+url:"https://pluto.tv/"
+},
+
+{
+name:"Tubi",
+keywords:"tubi movies tv",
+description:"Free streaming where available.",
+icon:"🎬",
+url:"https://tubitv.com/"
+},
+
+
+/* MOVIES */
+
+{
+name:"Netflix",
+keywords:"netflix movies series",
+description:"Movies and series.",
+icon:"🎬",
+url:"https://www.netflix.com/"
+},
+
+{
+name:"Disney+",
+keywords:"disney movies cartoons series",
+description:"Disney entertainment.",
+icon:"🏰",
+url:"https://www.disneyplus.com/"
+},
+
+{
+name:"Prime Video",
+keywords:"amazon prime movies series",
+description:"Movies and television.",
+icon:"📦",
+url:"https://www.primevideo.com/"
+},
+
+{
+name:"Crunchyroll",
+keywords:"crunchyroll anime cartoons",
+description:"Anime streaming.",
+icon:"🐉",
+url:"https://www.crunchyroll.com/"
+},
+
+
+/* BOOKS */
+
+{
+name:"TIE",
+keywords:"tie tanzania institute education books school",
+description:"Tanzania Institute of Education resources.",
+icon:"📘",
+url:"https://www.tie.go.tz/"
+},
+
+{
+name:"Google Books",
+keywords:"google books ebook books",
+description:"Search books and publications.",
+icon:"📖",
+url:"https://books.google.com/"
+},
+
+{
+name:"Project Gutenberg",
+keywords:"gutenberg free books ebooks",
+description:"Free public-domain ebooks.",
+icon:"📚",
+url:"https://www.gutenberg.org/"
+},
+
+{
+name:"OpenStax",
+keywords:"openstax textbooks education",
+description:"Free educational textbooks.",
+icon:"🎓",
+url:"https://openstax.org/"
+},
+
+
+/* MUSIC */
+
+{
+name:"Spotify",
+keywords:"spotify music songs playlists",
+description:"Music and podcasts.",
+icon:"🎧",
+url:"https://open.spotify.com/"
+},
+
+{
+name:"YouTube Music",
+keywords:"youtube music songs",
+description:"Music and music videos.",
+icon:"▶️",
+url:"https://music.youtube.com/"
+},
+
+{
+name:"Apple Music",
+keywords:"apple music songs",
+description:"Music streaming.",
+icon:"🍎",
+url:"https://music.apple.com/"
+},
+
+{
+name:"SoundCloud",
+keywords:"soundcloud music artists",
+description:"Music and independent artists.",
+icon:"☁️",
+url:"https://soundcloud.com/"
+},
+
+{
+name:"Deezer",
+keywords:"deezer music",
+description:"Music streaming.",
+icon:"🎵",
+url:"https://www.deezer.com/"
+},
+
+
+/* SOCIAL */
+
+{
+name:"YouTube",
+keywords:"youtube videos social",
+description:"Videos and creators.",
+icon:"▶️",
+url:"https://www.youtube.com/"
+},
+
+{
+name:"TikTok",
+keywords:"tiktok short videos",
+description:"Short videos and trends.",
+icon:"🎵",
+url:"https://www.tiktok.com/"
+},
+
+{
+name:"Instagram",
+keywords:"instagram reels photos social",
+description:"Photos, reels and stories.",
+icon:"📸",
+url:"https://www.instagram.com/"
+},
+
+{
+name:"WhatsApp",
+keywords:"whatsapp chat messages",
+description:"Messaging and communication.",
+icon:"💬",
+url:"https://www.whatsapp.com/"
+},
+
+{
+name:"Telegram",
+keywords:"telegram channels groups",
+description:"Messaging and channels.",
+icon:"✈️",
+url:"https://telegram.org/"
+},
+
+{
+name:"Discord",
+keywords:"discord gaming chat",
+description:"Gaming communities.",
+icon:"🎮",
+url:"https://discord.com/"
+},
+
+{
+name:"Reddit",
+keywords:"reddit communities discussions",
+description:"Communities and discussions.",
+icon:"🤖",
+url:"https://www.reddit.com/"
+},
+
+{
+name:"X",
+keywords:"twitter x social news",
+description:"News and conversations.",
+icon:"𝕏",
+url:"https://x.com/"
+},
+
+{
+name:"Facebook",
+keywords:"facebook social friends",
+description:"Social networking.",
+icon:"💙",
+url:"https://www.facebook.com/"
+},
+
+{
+name:"Snapchat",
+keywords:"snapchat stories social",
+description:"Snaps and stories.",
+icon:"👻",
+url:"https://www.snapchat.com/"
+},
+
+{
+name:"Pinterest",
+keywords:"pinterest images ideas",
+description:"Ideas and inspiration.",
+icon:"📌",
+url:"https://www.pinterest.com/"
+}
+
+];
+
+
+/* =====================================================
+                      SEARCH
+===================================================== */
+
+const searchBox =
+document.getElementById("search");
+
+const results =
+document.getElementById("results");
+
+
+function searchKelvinho(){
+
+    const query =
+    searchBox.value
+    .toLowerCase()
+    .trim();
+
+    results.innerHTML="";
+
+    if(query===""){
+        return;
+    }
+
+
+    const matches =
+    sites.filter(site =>
+
+        site.name
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        site.keywords
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        site.description
+        .toLowerCase()
+        .includes(query)
+
+    );
+
+
+    matches.forEach(site => {
+
+        const result =
+        document.createElement("a");
+
+        result.className="result";
+
+        result.href=site.url;
+
+        result.target="_blank";
+
+        result.innerHTML=`
+
+            <div class="result-icon">
+                ${site.icon}
             </div>
 
-        </div>
+            <div>
 
-    </section>
-
-
-    <!-- SERVICES -->
-    <section id="services">
-
-        <div class="title">
-
-            <h2>My Services</h2>
-
-            <p>
-                Things I can build for you
-            </p>
-
-        </div>
-
-
-        <div class="cards">
-
-            <div class="card">
-
-                <div class="icon">💻</div>
-
-                <h3>Web Design</h3>
+                <h3>
+                    ${site.name}
+                </h3>
 
                 <p>
-                    Modern and responsive websites that work
-                    on computers, tablets and phones.
+                    ${site.description}
                 </p>
 
             </div>
+        `;
+
+        results.appendChild(result);
+
+    });
 
 
-            <div class="card">
+    /* WEB SEARCH RESULT */
 
-                <div class="icon">🎮</div>
+    const web =
+    document.createElement("a");
 
-                <h3>Game Projects</h3>
+    web.className="result";
 
-                <p>
-                    Interactive browser games using JavaScript,
-                    HTML and CSS.
-                </p>
+    web.target="_blank";
 
-            </div>
+    web.href=
+    "https://www.google.com/search?q="+
+    encodeURIComponent(searchBox.value);
 
+    web.innerHTML=`
 
-            <div class="card">
-
-                <div class="icon">🚀</div>
-
-                <h3>Web Apps</h3>
-
-                <p>
-                    Interactive applications with buttons,
-                    forms and dynamic content.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">🎨</div>
-
-                <h3>Creative Design</h3>
-
-                <p>
-                    Attractive layouts, animations and
-                    modern user interfaces.
-                </p>
-
-            </div>
-
+        <div class="result-icon">
+            🌐
         </div>
 
-    </section>
+        <div>
 
-
-    <!-- ABOUT -->
-    <section class="about" id="about">
-
-        <div class="title">
-
-            <h2>About This Website</h2>
-
-        </div>
-
-        <div class="about-box">
+            <h3>
+                Search the whole web
+            </h3>
 
             <p>
-                This website is completely created with
-                HTML, CSS and JavaScript. You can customize
-                the colors, text, images, buttons and sections
-                to create your own professional website.
+                Search "${searchBox.value}" on Google.
             </p>
 
         </div>
 
-    </section>
+    `;
+
+    results.appendChild(web);
+
+}
 
 
-    <!-- CONTACT -->
-    <section id="contact">
+/* =====================================================
+                   ENTER TO SEARCH
+===================================================== */
 
-        <div class="title">
+searchBox.addEventListener(
+    "keydown",
+    function(event){
 
-            <h2>Contact</h2>
+        if(event.key==="Enter"){
 
-            <p>
-                Send a message
-            </p>
-
-        </div>
-
-
-        <div class="contact-box">
-
-            <input
-                type="text"
-                id="name"
-                placeholder="Your name"
-            >
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Your email"
-            >
-
-            <textarea
-                id="message"
-                placeholder="Your message"
-            ></textarea>
-
-            <button
-                class="btn primary submit"
-                onclick="sendMessage()"
-            >
-                Send Message
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        © 2026 Kelvin Web — All Rights Reserved.
-
-    </footer>
-
-
-    <!-- JAVASCRIPT -->
-    <script>
-
-        function sendMessage() {
-
-            let name =
-                document.getElementById("name").value;
-
-            let email =
-                document.getElementById("email").value;
-
-            let message =
-                document.getElementById("message").value;
-
-
-            if (
-                name === "" ||
-                email === "" ||
-                message === ""
-            ) {
-
-                alert("Please fill in all fields.");
-
-                return;
-            }
-
-
-            alert(
-                "Thanks " +
-                name +
-                "! Your message has been received."
-            );
-
-
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("message").value = "";
+            searchKelvinho();
 
         }
 
-    </script>
+    }
+);
+
+
+/* =====================================================
+                    SEARCH ENGINE
+===================================================== */
+
+function searchEngine(engine){
+
+    const query =
+    searchBox.value.trim();
+
+    if(!query){
+
+        searchBox.focus();
+
+        return;
+
+    }
+
+
+    let url;
+
+
+    if(engine==="google"){
+
+        url=
+        "https://www.google.com/search?q="+
+        encodeURIComponent(query);
+
+    }
+
+
+    if(engine==="bing"){
+
+        url=
+        "https://www.bing.com/search?q="+
+        encodeURIComponent(query);
+
+    }
+
+
+    if(engine==="duck"){
+
+        url=
+        "https://duckduckgo.com/?q="+
+        encodeURIComponent(query);
+
+    }
+
+
+    if(engine==="yahoo"){
+
+        url=
+        "https://search.yahoo.com/search?p="+
+        encodeURIComponent(query);
+
+    }
+
+
+    if(engine==="brave"){
+
+        url=
+        "https://search.brave.com/search?q="+
+        encodeURIComponent(query);
+
+    }
+
+
+    window.open(url,"_blank");
+
+}
+
+</script>
 
 </body>
 </html>
